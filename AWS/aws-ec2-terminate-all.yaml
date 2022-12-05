@@ -1,0 +1,17 @@
+---
+- name: This playbook is used to terminate multiple instances using instance ids
+  hosts: localhost/all
+  become: yes
+  vars:
+    ids:
+      - id1
+      - id2
+      - id3
+  tasks:
+    - local_action:
+        aws_access_key: 
+        aws_secret_key:
+        module: ec2
+        state: absent
+        instance_ids: "{{ ids }}"
+        region: us-west-2

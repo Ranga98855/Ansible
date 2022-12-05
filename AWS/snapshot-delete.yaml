@@ -1,0 +1,12 @@
+---
+- name: this playbook is used to delete snapshot
+  hosts: localhost
+  become: yes
+  tasks:
+    - local_action:
+        aws_access_key:
+        aws_secret_key:
+        module: ec2_snapshot
+        snapshot_id: snapshot id here
+        state: absent
+        region: us-west-2    

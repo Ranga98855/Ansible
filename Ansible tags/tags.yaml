@@ -1,0 +1,26 @@
+---
+- name: This is demonstrate use of ansible tags
+  hosts: all
+  become: yes
+  tasks:
+    - name: this is to copy /etc/passwd into /tmp directory
+      copy:
+        src: /etc/passwd
+        dest: /tmp
+      tags: dev-team
+    - name: this is to create ranga directory under /tmp
+      file:
+        path: /tmp/ranga
+        state: directory
+      tags: test-team
+    - name: this is to install apache package
+      apt:
+        name: apache2
+        state: present
+      tags: prod-team
+    - name: this is to restart a service
+      service:
+        name: apache2
+        enabled: yes
+        state: started
+      tags: admin-team

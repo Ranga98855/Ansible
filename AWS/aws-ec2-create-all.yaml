@@ -1,0 +1,24 @@
+---
+- name: This is used to create multiple instances
+  hosts: localhost
+  become: yes
+  tasks:
+    - ec2:
+        aws_access_key:
+        aws_secret_key:
+        key_name:
+        key_group:
+        instance_type:
+        ami:
+        wait:
+        wait_timeout:
+        count: 3
+        instance_tags:
+          name:
+            - Dev-team
+            - Test-team
+            - Prod-team
+        monitoring: yes
+        region: us-west-2
+        vpc_subnet_id:
+        assign_pblic_ip: yes

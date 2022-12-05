@@ -1,0 +1,9 @@
+---
+- name: This playbook is used to install java in centos 7.8
+  hosts: all
+  become: yes
+  tasks:  
+    - name: Installing java-11-openjdk in centos
+      yum:
+        name: Java-11-openjdk
+        state: present

@@ -1,0 +1,11 @@
+---
+- name: " This will execute web-server tasks which are mentioned in task1.yaml"
+  hosts: web-server
+  become: yes
+  tasks:
+    - import_tasks: task1.yaml
+- name: "This will execute app-server tasks which are mentioned in task2.yaml"
+  hosts: app-server
+  become: yes
+  tasks:
+    - import_tasks: task2.yaml

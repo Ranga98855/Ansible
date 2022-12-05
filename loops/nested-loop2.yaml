@@ -1,0 +1,11 @@
+---
+- name: This is demonstrate nested loops
+  hosts: all
+  become: yes
+  tasks:
+    - copy:
+        src: "{{ item[0] }}"
+        dest: "{{ item[1] }}"
+      with_nested:
+        - [ '/etc/passwd','/etc/fstab','/etc/group' ]
+        - [ '/tmp','/mnt','/opt' ]

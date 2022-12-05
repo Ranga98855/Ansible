@@ -1,0 +1,11 @@
+---
+- name: This is used to create docker container
+  hosts: all
+  become: yes
+  tasks:
+    - docker_container:
+        name: web-container
+        image: ubuntu:14.04
+        command: sleep infinity
+        ports:
+          - "81:80"

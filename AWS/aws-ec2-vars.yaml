@@ -1,0 +1,27 @@
+---
+- name: This playbook is used to Provisioning EC2 instance using variables
+  hosts: localhost/all
+  become: yes
+  vars:
+    keypair:  ansible-key
+    security_group: Ansible-SG
+    image:
+    region: us-west-2
+    type: t2.micro  
+  tasks:
+    - ec2:
+        aws_access_key: 
+        aws_secret_key:
+        Key_name: "{{ keypair }}"
+        group:  "{{ security_group }}"
+        instance_type:  "{{ type }}"
+        image:  "{{ image }}"
+        wait: yes
+        wait_timeout: 500
+        count: 3
+        instance_tags:
+          Name: Prod-team
+        monitoring: yes
+        region: "{{ region }}"
+        assign_public_ip: yes
+        vpc_subnet_id:

@@ -1,0 +1,16 @@
+---
+- name: This playbook is used to install java on ubuntu and centos using when condition
+  hosts: all
+  become: yes
+  tasks:
+    - name: installing openjdk-8-jdk
+      apt:
+        name: openjdk-8-jdk
+        state: present
+      when: ansible_facts['os_family'] == "Debian"
+
+    - name: installing java-11-openjdk
+      yum:
+        name: java-11-openjdk
+        state: present
+      when: ansible_facts['os_family'] == "Redhat"

@@ -1,0 +1,10 @@
+---
+- name: Installing java on Ubuntu 18.04/20.04/22.04
+  hosts: all
+  become: yes
+  tasks:
+    - name: this is used to install openjdk
+      apt:
+        name: openjdk-8-jdk
+        state: present
+        autoremove: yes

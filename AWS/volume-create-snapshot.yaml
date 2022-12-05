@@ -1,0 +1,11 @@
+---
+- name: this playbook is used to create snapshot for a volume
+  hosts: localhost
+  become: yes
+  tasks:
+    - ec2_snapshot:
+        aws_access_key:
+        aws_secret_key:
+        volume_id:  volume id here
+        region: us-west-2
+        description: This is my first EBS Volume Snapshot

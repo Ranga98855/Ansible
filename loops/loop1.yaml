@@ -1,0 +1,14 @@
+---
+- name: This playbook demonstrate loops
+  hosts: all
+  become: yes
+  tasks:
+    - name: this task is used to copy file
+      copy:
+        src: "{{ item }}"
+        dest: /tmp
+      with_items:
+        - /etc/passwd
+        - /etc/fstab
+        - /etc/shadow
+        - /etc/group

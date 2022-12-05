@@ -1,0 +1,41 @@
+# Inspiration for installing LAMP on Ubuntu 22.04 is <url>
+
+---
+- hosts: all
+  beocme: yes
+  tasks:
+    - name: fail for other platforms
+      fail:
+        msg: This playbook is developed only for ubuntu22.04
+      when: ansible_os_family != "Debian"
+
+    - name: "Installing apache2 in ubuntu:22.04"
+      apt:
+        name: apache2
+        Update_cache: yes
+        state: present
+      notify: restart_apache
+
+    - name: "Installing PHP modules"
+      apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - php
+        - php-common
+        - php-mysql
+        - php-gd
+        - php-cli
+
+    - name: copy info.php into /var/www/html
+      copy:
+        src: info.php
+        dest: /var/www/html/info.php
+      notify: restart-apache
+      
+  handlers:
+    - name: restart_apache
+      service:
+        name: apache2
+        enabled: yes
+        state: restarted

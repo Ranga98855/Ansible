@@ -1,0 +1,9 @@
+---
+- name: Installing apache2 only on ubuntu using conditions
+  hosts: all
+  become: yes
+  tasks:  
+    - apt:
+        name: apache2
+        state: present
+      when: ansible_distribution == "Ubuntu"

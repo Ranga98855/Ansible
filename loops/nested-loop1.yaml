@@ -1,0 +1,11 @@
+---
+- name: This playbook file demonstrate Nested loops
+  hosts: all
+  become: yes
+  tasks:
+    - copy:
+        src: "{{ item[0] }}"
+        dest: "{{ item[1] }}"
+      with_nested:
+        - /etc/passwd
+        - /tmp 

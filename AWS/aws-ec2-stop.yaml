@@ -1,0 +1,13 @@
+---
+- name: This playbook is used to stop EC2 instance
+  hosts: localhost/all
+  become: yes
+  tasks:
+    - ec2:
+        aws_access_key: 
+        aws_secret_key:
+        instance_ids:
+        region: us-west-2
+        state: stopped/running
+        vpc_subnet_id:
+        assign_public_ip: yes

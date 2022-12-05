@@ -1,0 +1,11 @@
+- name: this is to copy the /etc/passwd to /tmp
+      copy:
+        src: /etc/passwd
+        dest: /tmp
+        owner: ranga
+        group: ranga
+        mode: 0777
+    - name: this is to create microsoft directory
+      file:
+        path: /tmp/microsoft
+        state: directory

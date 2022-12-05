@@ -1,0 +1,29 @@
+---
+- name: "This is the first task in web-server group with id-address"
+  hosts: web-server
+  become: yes
+  tasks:
+    - name: this is to copy the /etc/passwd to /tmp
+      copy:
+        src: /etc/passwd
+        dest: /tmp
+        owner: ranga
+        group: ranga
+        mode: 0777
+    - name: this is to create microsoft directory
+      file:
+        path: /tmp/microsoft
+        state: directory
+- name: "This is the second task executed in app-server in same playbook file"
+  hosts: app-server
+  become: yes
+  tasks:
+    - name: this task is used to install apache2 package
+      apt:
+        name: apache2
+        update_cache: yes
+        state: present
+    - name: this task is used to start the service
+      service:
+        name: apache2
+        state: started

@@ -1,0 +1,6 @@
+mydir: /tmp/rangaswamy
+myfile: /etc/passwd
+mypkg:
+  - apache2
+  - wget
+  - tree

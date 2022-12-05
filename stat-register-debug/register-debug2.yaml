@@ -1,0 +1,14 @@
+---
+- name: This is used to write some content inside a file if file exists
+  hosts: all
+  become: yes
+  tasks:
+    - stat:
+        path: /tmp/myfile.txt
+      register: isexists
+    - debug: var=isexists
+
+    - copy:
+        content: "Welcome to Ansible Session"
+        dest: /tmp/myfile.txt
+      when: isexists.stat.exists == true

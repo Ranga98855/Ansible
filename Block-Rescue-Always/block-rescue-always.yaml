@@ -1,0 +1,20 @@
+---
+- name: This demonstrate Block, rescue, always
+  hosts: all
+  become: yes
+  tasks:
+    - block:
+        lineinfile:
+          path: /tmp/myfile.txt
+          line: "Welcome to Ansible session"
+      rescue:
+        - file:
+            path: /tmp/myfile.txt
+            state: touch
+        - lineinfile:
+            path: /tmp/myfile.txt
+            line: "Welcome to Ansible session"
+      always:
+        - apt:
+            name: tree
+            state: present

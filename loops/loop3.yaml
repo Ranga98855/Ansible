@@ -1,0 +1,31 @@
+---
+- name: This playbook demonstrate loops
+  hosts: all
+  become: yes
+  vars:
+    mydir:
+      - /tmp/mycloud1
+      - /tmp/mycloud2
+    myfile:
+      - /etc/passwd
+      - /etc/group
+      - /etc/fstab
+  tasks:
+    - name: this task is used to copy file
+      copy:
+        src: "{{ item }}"
+        dest: /tmp
+      with_items:
+        - "{{ myfile }}"
+    - name: this task is used to create directories
+      file:
+        path: " {{ item }}"
+        state: directory
+      with_item:
+        - "{{ mydir }}"
+    - name: this task used to copy the file into directories
+      copy:
+        src: /etc/passwd
+        dest: "{{ item }}"
+      with_item:
+        - "{{ mydir }}"

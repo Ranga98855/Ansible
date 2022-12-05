@@ -1,0 +1,14 @@
+---
+- name: this playbook is used to copy snapshot from one region to another region
+  hosts: localhost
+  become: yes
+  tasks:
+    - ec2_snapshot:
+        aws_access_key:
+        aws_secret_key:
+        source_region: us-west-2
+        region: us-east-1
+        source_snapshot_id: snapshot id here
+        tags:
+          Name: North-Virginia
+        encrypted: yes

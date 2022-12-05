@@ -1,0 +1,16 @@
+---
+- name: Create 3 user accounts and assign into its groups
+  hosts: all
+  become: yes
+  tasks:
+    - user:
+        name: "{{  item.username}}"
+        state: present
+        groups: "{{ item.groupname }}"  
+      with_items:
+        - { usename: 'ranga', groupname: 'dev-team' }
+        - { username: 'harika', groupname: 'test-team' }
+        - { username: 'raja',groupname: 'prod-team' }
+
+
+        

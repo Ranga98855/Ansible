@@ -1,0 +1,24 @@
+---
+- name: This is my first playbook file
+  hosts: all
+  become: yes
+  tasks:
+    - name: This is to copy the /etc/passwd to /tmp
+      copy:
+        src: /etc/passwd
+        dest: /tmp
+        owner: ranga
+        group: ranga
+        mode: 0777
+    - name: This is to create aws directory
+      file:
+        path: /tmp/aws
+        state: directory
+    - name: This is used to install tree and apache2 package
+      apt:
+        name: apache2
+        update_cache: yes
+        state: present
+
+
+      

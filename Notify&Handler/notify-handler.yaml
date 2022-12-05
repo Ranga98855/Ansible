@@ -1,0 +1,23 @@
+---
+- name: this is demonstrate notify and handlers
+  hosts: all
+  become: yes
+  tasks:
+    - lineinfile:
+        path: /etc/ssh/sshd_config
+        line: DenyUsers ranga swamy
+      notify:
+        - myhandler1
+        - myhandler2
+    - copy:
+        src: /etc/passwd
+        dest: /tmp
+  handlers:
+    - name: myhandlers1
+      service:
+        name: sshd
+        state: restarted
+    - name: myhandler2
+      apt:
+        name: tree
+        state: present

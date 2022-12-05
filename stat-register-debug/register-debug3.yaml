@@ -1,0 +1,19 @@
+---
+- name: This is used to create file if file doesn't exists and copy content inside in created file
+  hosts: all
+  become: yes
+  tasks:
+    - stat:
+        path: /tmp/myfile.txt
+      register: isexists
+    - debug: var=isexists
+
+    - copy:
+        content: "Welcome to Ansible Session"
+        dest: /tmp/myfile.txt
+      when: isexists.stat.exists == true
+    
+    - file:
+        path: /tmp/myfile.txt
+        state: present
+      when: isexists.stat.exists == false

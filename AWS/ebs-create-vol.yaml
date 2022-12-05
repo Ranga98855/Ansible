@@ -1,0 +1,18 @@
+---
+- name: this playbook is used to create elastic block storage(ebs) volume
+  hosts: localhost
+  become: yes
+  tasks:
+    - ec2_vol:
+        aws_access_key:
+        aws_secret_key:
+        volume_size: 10
+        device_name: /dev/sda2
+        volume_type: gp2
+        iops: 100
+        zone: us-west-2b
+        region: us-west-2
+        tags:
+          Name: Test-volume
+
+

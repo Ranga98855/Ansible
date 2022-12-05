@@ -1,0 +1,10 @@
+---
+- name: This playbook is used to install java using when condition
+  hosts: all
+  become: yes
+  tasks:
+    - name: installing java on openjdk-8-jdk
+      apt:
+        name: openjdk-8-jdk
+        state: present
+      when: ansible_facts['os_family'] == "Debian"

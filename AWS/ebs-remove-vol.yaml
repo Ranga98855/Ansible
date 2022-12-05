@@ -1,0 +1,16 @@
+---
+- name: this playbook is used to remove elastic block storage(ebs) volume
+  hosts: localhost
+  become: yes
+  tasks:
+    - ec2_vol:
+        aws_access_key:
+        aws_secret_key:
+        id: volume id here  
+        state: absent
+        zone: us-west-2b
+        region: us-west-2
+        
+       
+
+

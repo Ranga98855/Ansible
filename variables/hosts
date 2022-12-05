@@ -1,0 +1,2 @@
+172.31.26.75 myfile=/etc/fstab mydir=/tmp/india mypkg=apache2,wget,tree
+172.31.25.90 myfile=/etc/passwd mydir=/tmp/andhra mypkg=wget,curl

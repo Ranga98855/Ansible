@@ -1,0 +1,8 @@
+---
+- name: This is used to stop/remove docker container
+  hosts: all
+  become: yes
+  tasks:
+    - docker_container:
+        name: web-container
+        state: absent

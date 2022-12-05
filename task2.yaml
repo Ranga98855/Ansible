@@ -1,0 +1,9 @@
+- name: this is to install apache2 package
+      apt:
+        name: apache2
+        update_cache: yes
+        state: present
+    - name: this is to start the service
+      service:
+        name: apache2
+        state: started

@@ -1,0 +1,17 @@
+[ubuntu]
+172.31.12.21
+172.31.65.36
+
+[centos]
+172.31.75.142
+
+
+[web:vars]
+mydir=/tmp/pakistan
+myfile=/etc/shadow
+mypkg=wget,curl
+
+[app:vars]
+mydir=/tmp/delhi
+myfile=/etc/gshadow
+mypkg=apache2,wget,curl

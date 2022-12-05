@@ -1,0 +1,9 @@
+---
+- name: This is used to demonstrate stat,register and debug modules
+  hosts: all
+  become: yes
+  tasks:
+    - stat:
+        path: /tmp/myfile.txt
+      register: isexists
+    - debug: var=isexists

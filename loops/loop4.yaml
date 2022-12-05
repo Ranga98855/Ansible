@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: this task is used to install apache and other packages
+      apt:
+        name: "{{ item }}"
+        state: present
+      with_item:
+        - apache2
+        - tree
+        - wget
+        - curl
+        - nfs-kernal-server

@@ -1,0 +1,39 @@
+---
+- hosts:  all
+  become: yes
+  tasks:
+    - name: fail for other platforms
+      fail:
+        msg: "This playbook is developed only for ubuntu 22.04"
+      when: ansible_os_family != "Debian"
+
+    - name: installing apache2 in ubutnu
+      apt:
+        name: apache2
+        Update_Cache: yes
+        state: present
+
+    - name: start the apache service
+      service:
+        name: apache2
+        enalbled: yes
+        state: started
+    - name: Installing PHP modules
+      apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - php
+        - php-common
+        - php-mysql
+        - php-gd
+        - php-cli
+    - name: copy info.php into /var/www/html
+      copy:
+        src: info.php
+        dest: /var/www/html/info.php
+    - name: restart apcache service
+      service:
+        name: apache2
+        enabled: yes
+        state: restarted

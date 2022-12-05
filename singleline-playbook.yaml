@@ -1,0 +1,8 @@
+---
+- name: "This is singleline format playbook"
+  hosts: all
+  become: yes
+  tasks:
+    - copy: src:/etc/shadow dest:/tmp mode:0777
+    - file: path:/tmp/azure state:directory
+    - apt: name:nfs-kernal-server state:present  

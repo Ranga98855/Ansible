@@ -1,0 +1,17 @@
+---
+- name: this playbook is used to attach elastic block storage(ebs) volume to an instance
+  hosts: localhost
+  become: yes
+  tasks:
+    - ec2_vol:
+        aws_access_key:
+        aws_secret_key:
+        instance: instance id here
+        id: volume id here  
+        device_name:  /dev/sda2
+        zone: us-west-2b
+        region: us-west-2
+        delete_on_termination:  yes
+       
+
+

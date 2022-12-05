@@ -1,0 +1,26 @@
+---
+- name: This is demonstrate ansible ignore errors
+  hosts: all
+  become: yes
+  tasks:
+    - name: this is to copy /etc/group into /tmp deirectory
+      copy:
+        src: /etc/group
+        dest: /tmp
+      ignore_errors: yes
+    - name: this is to create swamy directory undre /tmp directory
+      file:
+        path: /tmp/swamy
+        state: directory
+      ignore_errors: yes
+    - name: this is to install apache2 package
+      apt:
+        name: apache2
+        state: present
+      ignore_errors: yes
+    - name: this is to restrat the service
+      service:
+        name: apache2
+        enabled: yes
+        state: started
+      ignore_erros: yes

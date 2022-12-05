@@ -1,0 +1,14 @@
+---
+- name: This playbook is used to create VPC
+  hosts: all
+  become: yes
+  tasks:
+    - ec2_vpc_net:
+        aws_access_key:
+        aws_secret_key:
+        cidr_block: 172.22.0.0/16
+        name: Production-VPC
+        region: us-west-2
+        state: present
+        resource_tags:
+          Name: Production-VPC
